@@ -88,13 +88,13 @@ Some directions to explore once you're comfortable with the codebase.
 
 ### Beginner
 
-- **New gem colour:** add a new colour variant to `GemType`.
-- **Bonus points for large clears:** award more points when many gems are cleared in one step.
-- **Move counter:** track and display the number of swaps made.
-- **High score:** persist the best score to disk across sessions.
-- **Background:** find or make a background image, and place it behind the game board.
-- **Angry wiggles:** make the gems shake angrily when an invalid move is made.
-- **New font:** find a better font, add it to the assets folder, and use it.
+- **[New gem colour](workshop/beginner/1-new-gem-colour.md):** add a new colour variant to `GemType`.
+- **[Bonus points for large clears](workshop/beginner/2-bonus-points-for-large-clears.md):** award more points when many gems are cleared in one step.
+- **[Move counter](workshop/beginner/3-move-counter.md):** track and display the number of swaps made.
+- **[High score](workshop/beginner/4-high-score.md):** persist the best score to disk across sessions.
+- **[Background](workshop/beginner/5-background.md):** find or make a background image, and place it behind the game board.
+- **[Angry wiggles](workshop/beginner/6-angry-wiggles.md):** make the gems shake angrily when an invalid move is made.
+- **[New font](workshop/beginner/7-new-font.md):** find a better font, add it to the assets folder, and use it.
 
 ### Intermediate
 
