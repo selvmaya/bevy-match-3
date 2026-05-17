@@ -98,11 +98,11 @@ Some directions to explore once you're comfortable with the codebase.
 
 ### Intermediate
 
-- **Scoring multipliers:** award bonus points for cascade chains.
-- **Timer mode:** add a countdown and a game-over screen. For a different flavour, try a limited moves budget instead.
-- **Background music:** add a looping music track that plays during a game.
-- **Pause menu:** pause the game on Escape and show a menu.
-- **Settings:** add a settings menu to control volume, grid size and number of gem colors.
+- **[Scoring multipliers](workshop/intermediate/1-scoring-multipliers.md):** award bonus points for cascade chains.
+- **[Timer mode](workshop/intermediate/2-timer-mode.md):** add a countdown and a game-over screen. For a different flavour, try a limited moves budget instead.
+- **[Background music](workshop/intermediate/3-background-music.md):** add a looping music track that plays during a game.
+- **[Pause menu](workshop/intermediate/4-pause-menu.md):** pause the game on Escape and show a menu.
+- **[Settings](workshop/intermediate/5-settings.md):** add a settings menu to control volume, grid size and number of gem colors.
 
 ### Advanced
 
