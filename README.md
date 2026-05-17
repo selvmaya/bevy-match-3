@@ -106,9 +106,9 @@ Some directions to explore once you're comfortable with the codebase.
 
 ### Advanced
 
-- **Gem sprites:** replace the colored rectangles with sprites of your choice, and update the selection appearance to match.
-- **Special gems:** add a bomb or line-clear gem type with a unique clearing effect.
-- **Shuffle when stuck:** detect when no valid moves remain and shuffle the board.
-- **Particle effects:** spawn short-lived particle entities when gems are cleared.
-- **Hint system:** after a few seconds of inactivity, highlight a valid move.
-- **Game AI:** add a mode where the game makes matches automatically.
+- **[Gem sprites](workshop/advanced/1-gem-sprites.md):** replace the colored rectangles with sprites of your choice, and update the selection appearance to match.
+- **[Special gems](workshop/advanced/2-special-gems.md):** add a bomb or line-clear gem type with a unique clearing effect.
+- **[Shuffle when stuck](workshop/advanced/3-shuffle-when-stuck.md):** detect when no valid moves remain and shuffle the board.
+- **[Particle effects](workshop/advanced/4-particle-effects.md):** spawn short-lived particle entities when gems are cleared.
+- **[Hint system](workshop/advanced/5-hint-system.md):** after a few seconds of inactivity, highlight a valid move.
+- **[Game AI](workshop/advanced/6-game-ai.md):** add a mode where the game makes matches automatically.
