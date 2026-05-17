@@ -24,27 +24,22 @@ const SCORE_FONT_SIZE: f32 = 28.0;
 const SCORE_TOP: f32 = 14.0;
 const SCORE_LEFT: f32 = 16.0;
 
-#[derive(Component)]
+#[derive(Component, Default, Clone)]
 struct ScoreText;
 
 fn setup_in_game_ui(mut commands: Commands) {
-    // Score — top-left corner.
-    commands.spawn((
-        ScoreText,
-        Text::new(Score::default().to_string()),
-        TextFont {
-            font_size: FontSize::Px(SCORE_FONT_SIZE),
-            ..default()
-        },
-        TextColor(Color::WHITE),
+    commands.spawn_scene(bsn! {
+        ScoreText
+        Text({Score::default().to_string()})
+        TextFont { font_size: px(SCORE_FONT_SIZE) }
+        TextColor(Color::WHITE)
         Node {
             position_type: PositionType::Absolute,
-            top: Val::Px(SCORE_TOP),
-            left: Val::Px(SCORE_LEFT),
-            ..default()
-        },
-        DespawnOnExit(ScreenState::InGame),
-    ));
+            top: px(SCORE_TOP),
+            left: px(SCORE_LEFT),
+        }
+        DespawnOnExit::<ScreenState>(ScreenState::InGame)
+    });
 }
 
 fn update_score_text(score: Res<Score>, mut text: Single<&mut Text, With<ScoreText>>) {
