@@ -7,13 +7,13 @@
 use bevy::prelude::*;
 use bevy::{
     input_focus::{
-        AutoFocus, InputDispatchPlugin, InputFocus, InputFocusVisible,
+        AutoFocus, InputFocus, InputFocusVisible,
         directional_navigation::DirectionalNavigationPlugin,
     },
     math::{CompassOctant, Dir2},
     picking::events::{Out, Over, Pointer},
     ui::auto_directional_navigation::{AutoDirectionalNavigation, AutoDirectionalNavigator},
-    ui_widgets::{Activate, Button, UiWidgetsPlugins},
+    ui_widgets::{Activate, Button},
 };
 
 use crate::GameState;
@@ -25,11 +25,7 @@ pub struct MenuPlugin;
 
 impl Plugin for MenuPlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins((
-            InputDispatchPlugin,
-            DirectionalNavigationPlugin,
-            UiWidgetsPlugins,
-        ))
+        app.add_plugins(DirectionalNavigationPlugin)
         .insert_resource(InputFocusVisible(true))
         .add_observer(on_play_activate)
         .add_observer(on_quit_activate)
@@ -101,7 +97,7 @@ fn setup_menu(mut commands: Commands) {
             parent.spawn((
                 Text::new("Bevy Match-3"),
                 TextFont {
-                    font_size: TITLE_FONT_SIZE,
+                    font_size: FontSize::Px(TITLE_FONT_SIZE),
                     ..default()
                 },
                 TextColor(Color::WHITE),
@@ -132,7 +128,7 @@ fn setup_menu(mut commands: Commands) {
                     btn.spawn((
                         Text::new("Play"),
                         TextFont {
-                            font_size: BUTTON_FONT_SIZE,
+                            font_size: FontSize::Px(BUTTON_FONT_SIZE),
                             ..default()
                         },
                         TextColor(Color::WHITE),
@@ -162,7 +158,7 @@ fn setup_menu(mut commands: Commands) {
                     btn.spawn((
                         Text::new("Quit"),
                         TextFont {
-                            font_size: BUTTON_FONT_SIZE,
+                            font_size: FontSize::Px(BUTTON_FONT_SIZE),
                             ..default()
                         },
                         TextColor(Color::WHITE),
@@ -191,7 +187,7 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
             parent.spawn((
                 Text::new("No More Moves!"),
                 TextFont {
-                    font_size: GAME_OVER_HEADING_FONT_SIZE,
+                    font_size: FontSize::Px(GAME_OVER_HEADING_FONT_SIZE),
                     ..default()
                 },
                 TextColor(Color::WHITE),
@@ -200,7 +196,7 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
             parent.spawn((
                 Text::new(score.to_string()),
                 TextFont {
-                    font_size: GAME_OVER_SCORE_FONT_SIZE,
+                    font_size: FontSize::Px(GAME_OVER_SCORE_FONT_SIZE),
                     ..default()
                 },
                 TextColor(GAME_OVER_SCORE_COLOR),
@@ -230,7 +226,7 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
                     btn.spawn((
                         Text::new("Main Menu"),
                         TextFont {
-                            font_size: BUTTON_FONT_SIZE,
+                            font_size: FontSize::Px(BUTTON_FONT_SIZE),
                             ..default()
                         },
                         TextColor(Color::WHITE),

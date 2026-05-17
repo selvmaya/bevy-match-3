@@ -33,7 +33,7 @@ fn setup_in_game_ui(mut commands: Commands) {
         ScoreText,
         Text::new(Score::default().to_string()),
         TextFont {
-            font_size: SCORE_FONT_SIZE,
+            font_size: FontSize::Px(SCORE_FONT_SIZE),
             ..default()
         },
         TextColor(Color::WHITE),
