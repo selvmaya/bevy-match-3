@@ -1,11 +1,11 @@
 //! Gem types, display colours, random generation, and visual sync systems.
 
+use crate::board::GridPos;
 use crate::GameSystems;
 use crate::ScreenState;
-use crate::board::GridPos;
 use bevy::math::StableInterpolate;
 use bevy::prelude::*;
-use rand::{RngExt, rng};
+use rand::{rng, RngExt};
 
 pub const GEM_SIZE: f32 = 60.0;
 
@@ -36,19 +36,15 @@ pub enum GemType {
     Green,
     Yellow,
     Purple,
-    Orange,
-    Pink,
 }
 
 impl GemType {
-    pub const ALL: [GemType; 7] = [
+    pub const ALL: [GemType; 5] = [
         GemType::Red,
         GemType::Blue,
         GemType::Green,
         GemType::Yellow,
         GemType::Purple,
-        GemType::Orange,
-        GemType::Pink,
     ];
 
     pub fn color(self) -> Color {
@@ -58,8 +54,6 @@ impl GemType {
             GemType::Green => Color::hsl(133.0, 0.63, 0.45),
             GemType::Yellow => Color::hsl(54.0, 0.78, 0.54),
             GemType::Purple => Color::hsl(276.0, 0.72, 0.56),
-            GemType::Orange => Color::hsl(27.0, 0.90, 0.52),
-            GemType::Pink => Color::hsl(348.0, 0.82, 0.68),
         }
     }
 

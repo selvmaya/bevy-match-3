@@ -3,8 +3,8 @@
 //! - [`Grid`] — resource holding entity handles and gem kinds for every cell.
 //! - [`GridPos`] — component on every gem entity giving its (col, row) address.
 
-use crate::ScreenState;
-use crate::gems::{GEM_SIZE, GemType};
+use crate::gems::{GemType, GEM_SIZE};
+use crate::{ScreenState, game_logic};
 use bevy::prelude::*;
 use std::collections::HashSet;
 
@@ -139,7 +139,7 @@ impl Grid {
     /// Core run-detection logic.
     ///
     /// Checks whether `pos`, treated as holding `kind`, belongs to a horizontal
-    /// or vertical run of 3+.  Neighbouring cells are looked up via `kind_at`,
+    /// or vertical run of some amount.  Neighbouring cells are looked up via `kind_at`,
     /// which lets callers substitute a different kind for one cell without
     /// mutating the board (used by [`Self::has_any_valid_move`]).
     fn pos_in_match_impl(
@@ -159,7 +159,7 @@ impl Grid {
             c += 1;
             run += 1;
         }
-        if run >= 3 {
+        if run >= game_logic::MINIMUM_MATCH {
             return true;
         }
 
@@ -175,7 +175,7 @@ impl Grid {
             r += 1;
             run += 1;
         }
-        run >= 3
+        run >= game_logic::MINIMUM_MATCH
     }
 
     /// Returns `true` if there is at least one swap on the board that would
@@ -221,8 +221,7 @@ impl Grid {
                 // Vertical neighbour
                 if row + 1 < GRID_ROWS {
                     let pb = GridPos::new(col, row + 1);
-                    if let Some(kind_b) = kinds[pb.row][pb.col] {
-                        if Self::pos_in_match_impl(pa, kind_b, |r, c| {
+                    if let Some(kind_b) = kinds[pb.row][pb.col] && (Self::pos_in_match_impl(pa, kind_b, |r, c| {
                             if r == pb.row && c == pb.col {
                                 Some(kind_a)
                             } else {
@@ -234,9 +233,8 @@ impl Grid {
                             } else {
                                 kinds[r][c]
                             }
-                        }) {
-                            return true;
-                        }
+                        })) {
+                        return true;
                     }
                 }
             }
@@ -245,16 +243,19 @@ impl Grid {
     }
 
     /// Returns the set of all grid positions that are part of a match of 3+.
+    /// Only matches in cardinal directions.
     pub fn find_all_matches(&self) -> HashSet<GridPos> {
         let mut matched = HashSet::new();
         let kinds = &self.kinds;
 
+        #[expect(clippy::needless_range_loop)] // index is used elsewhere
         for row in 0..GRID_ROWS {
             for col in find_run_indices(&kinds[row]) {
                 matched.insert(GridPos::new(col, row));
             }
         }
 
+        #[expect(clippy::needless_range_loop)] // index is used elsewhere
         for col in 0..GRID_COLS {
             let column: [Option<GemType>; GRID_ROWS] = std::array::from_fn(|row| kinds[row][col]);
             for row in find_run_indices(&column) {
@@ -266,7 +267,7 @@ impl Grid {
     }
 }
 
-/// Returns the indices within `line` that belong to a run of 3+ identical
+/// Returns the indices within `line` that belong to a run of some amount of
 /// non-empty kinds.
 fn find_run_indices(line: &[Option<GemType>]) -> Vec<usize> {
     let mut result = Vec::new();
@@ -278,7 +279,7 @@ fn find_run_indices(line: &[Option<GemType>]) -> Vec<usize> {
         let cur = line.get(i).copied().flatten();
 
         if cur != prev || prev.is_none() {
-            if prev.is_some() && i - run_start >= 3 {
+            if prev.is_some() && i - run_start >= game_logic::MINIMUM_MATCH as usize {
                 result.extend(run_start..i);
             }
             run_start = i;

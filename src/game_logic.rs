@@ -23,18 +23,26 @@
 //!         5. Stay in Animating — new Falling gems must settle before next check
 //! ```
 
+use crate::audio::SoundEffect;
+use crate::board::{Grid, GridPos, GEM_STEP, GRID_COLS, GRID_ROWS};
+use crate::gems::{Falling, GemType};
+use crate::selection::SwapMessage;
 use crate::GameState;
 use crate::GameSystems;
 use crate::ScreenState;
-use crate::audio::SoundEffect;
-use crate::board::{GEM_STEP, GRID_COLS, GRID_ROWS, Grid, GridPos};
-use crate::gems::{Falling, GemType};
-use crate::selection::SwapMessage;
 use bevy::prelude::*;
 use std::fmt;
 
-/// Points awarded per cleared gem.
-const POINTS_PER_CLEARED_GEM: u32 = 10;
+/// How many cells should align for a match
+pub const MINIMUM_MATCH: u32 = 3;
+/// Points for a minimum clear
+const POINT_FOR_3_CLEAR: u32 = 100;
+
+/// Goes up depending on amount of cells cleared, by multiplying by 2 for each extra cell
+fn point_award(cells_cleared_at_once: u32) -> u32 {
+    let extra_cells_in_clear = cells_cleared_at_once - MINIMUM_MATCH;
+    POINT_FOR_3_CLEAR * 2u32.pow(extra_cells_in_clear)
+}
 
 pub struct GameLogicPlugin;
 
@@ -142,7 +150,7 @@ fn process_cascade(
 
     score.value = score
         .value
-        .saturating_add(matched.len() as u32 * POINTS_PER_CLEARED_GEM);
+        .saturating_add(point_award(matched.len() as u32));
     audio.write(SoundEffect::Match);
 
     apply_gravity_and_refill(&mut grid, &mut commands);
@@ -194,12 +202,7 @@ fn apply_gravity_and_refill(grid: &mut Grid, commands: &mut Commands) {
                 0.0,
             );
             let entity = commands
-                .spawn((
-                    gem_type,
-                    pos,
-                    Transform::from_translation(above),
-                    Falling,
-                ))
+                .spawn((gem_type, pos, Transform::from_translation(above), Falling))
                 .id();
             grid.set_cell(pos, entity, gem_type);
         }

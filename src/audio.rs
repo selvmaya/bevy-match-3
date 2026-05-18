@@ -63,7 +63,7 @@ fn play_audio_cues(
 ) {
     for effect in effects.read() {
         commands.spawn((
-            AudioPlayer::new(handles.0[&effect].clone()),
+            AudioPlayer::new(handles.0[effect].clone()),
             PlaybackSettings::DESPAWN,
         ));
     }

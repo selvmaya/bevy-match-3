@@ -1,3 +1,4 @@
+#![allow(clippy::type_complexity)]
 //! Bevy Match-3
 //!
 //! A fully-playable match-3 game built with Bevy 0.18.
