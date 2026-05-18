@@ -163,27 +163,27 @@ Some directions to explore once you're comfortable with the codebase.
 
 ### Beginner
 
-- **New gem colour:** add a new colour variant to `GemType`.
-- **Bonus points for large clears:** award more points when many gems are cleared in one step.
-- **Move counter:** track and display the number of swaps made.
-- **High score:** persist the best score to disk across sessions.
-- **Background:** find or make a background image, and place it behind the game board.
-- **Angry wiggles:** make the gems shake angrily when an invalid move is made.
-- **New font:** find a better font, add it to the assets folder, and use it.
+- **[New gem colour](workshop/beginner/1-new-gem-colour.md):** add a new colour variant to `GemType`.
+- **[Bonus points for large clears](workshop/beginner/2-bonus-points-for-large-clears.md):** award more points when many gems are cleared in one step.
+- **[Move counter](workshop/beginner/3-move-counter.md):** track and display the number of swaps made.
+- **[High score](workshop/beginner/4-high-score.md):** persist the best score to disk across sessions.
+- **[Background](workshop/beginner/5-background.md):** find or make a background image, and place it behind the game board.
+- **[Angry wiggles](workshop/beginner/6-angry-wiggles.md):** make the gems shake angrily when an invalid move is made.
+- **[New font](workshop/beginner/7-new-font.md):** find a better font, add it to the assets folder, and use it.
 
 ### Intermediate
 
-- **Scoring multipliers:** award bonus points for cascade chains.
-- **Timer mode:** add a countdown and a game-over screen. For a different flavour, try a limited moves budget instead.
-- **Background music:** add a looping music track that plays during a game.
-- **Pause menu:** pause the game on Escape and show a menu.
-- **Settings:** add a settings menu to control volume, grid size and number of gem colors.
+- **[Scoring multipliers](workshop/intermediate/1-scoring-multipliers.md):** award bonus points for cascade chains.
+- **[Timer mode](workshop/intermediate/2-timer-mode.md):** add a countdown and a game-over screen. For a different flavour, try a limited moves budget instead.
+- **[Background music](workshop/intermediate/3-background-music.md):** add a looping music track that plays during a game.
+- **[Pause menu](workshop/intermediate/4-pause-menu.md):** pause the game on Escape and show a menu.
+- **[Settings](workshop/intermediate/5-settings.md):** add a settings menu to control volume, grid size and number of gem colors.
 
 ### Advanced
 
-- **Gem sprites:** replace the colored rectangles with sprites of your choice, and update the selection appearance to match.
-- **Special gems:** add a bomb or line-clear gem type with a unique clearing effect.
-- **Shuffle when stuck:** detect when no valid moves remain and shuffle the board.
-- **Particle effects:** spawn short-lived particle entities when gems are cleared.
-- **Hint system:** after a few seconds of inactivity, highlight a valid move.
-- **Game AI:** add a mode where the game makes matches automatically.
+- **[Gem sprites](workshop/advanced/1-gem-sprites.md):** replace the colored rectangles with sprites of your choice, and update the selection appearance to match.
+- **[Special gems](workshop/advanced/2-special-gems.md):** add a bomb or line-clear gem type with a unique clearing effect.
+- **[Shuffle when stuck](workshop/advanced/3-shuffle-when-stuck.md):** detect when no valid moves remain and shuffle the board.
+- **[Particle effects](workshop/advanced/4-particle-effects.md):** spawn short-lived particle entities when gems are cleared.
+- **[Hint system](workshop/advanced/5-hint-system.md):** after a few seconds of inactivity, highlight a valid move.
+- **[Game AI](workshop/advanced/6-game-ai.md):** add a mode where the game makes matches automatically.
